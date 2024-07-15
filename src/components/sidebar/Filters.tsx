@@ -117,7 +117,7 @@ const Filters = ({ open, onClose, data, onFilterChange }: FiltersSidebarProps) =
               multiple
               value={selectedCategories}
               onChange={handleCategoryChange}
-              renderValue={(selected) => (selected as string[]).join(', ')}
+              renderValue={(selected) => (selected).join(', ')}
             >
               {categories.map((category) => (
                 <MenuItem key={category} value={category}>
@@ -137,7 +137,7 @@ const Filters = ({ open, onClose, data, onFilterChange }: FiltersSidebarProps) =
               multiple
               value={selectedSubcategories}
               onChange={handleSubcategoryChange}
-              renderValue={(selected) => (selected as string[]).join(', ')}
+              renderValue={(selected) => (selected).join(', ')}
             >
               {subcategories.map((subcategory) => (
                 <MenuItem key={subcategory} value={subcategory}>
