@@ -65,17 +65,24 @@ const Filters = ({ open, onClose, data, onFilterChange }: FiltersSidebarProps) =
     setPriceRange({ min: 0, max: Number.MAX_SAFE_INTEGER });
     setCreatedAtRange({ min: null, max: null });
     setUpdatedAtRange({ min: null, max: null });
-    // applyFilters();
+    applyFilters();
   };
 
   const applyFilters = () => {
     const filteredData = searcher.search(searchQuery)
-      .filter((item: { category: string; subcategory: string; price: number; createdAt: string | number | Date; }) => {
+      .filter((item: { 
+        category: string; 
+        subcategory: string; 
+        price: number; 
+        createdAt: string | number | Date; 
+        updatedAt: string | number | Date;
+      }) => {
         const categoryMatch = selectedCategories.length === 0 || selectedCategories.includes(item.category);
         const subcategoryMatch = selectedSubcategories.length === 0 || selectedSubcategories.includes(item.subcategory);
         const priceMatch = item.price >= priceRange.min && item.price <= priceRange.max;
         const createdAtMatch = (!createdAtRange.min || new Date(item.createdAt) >= createdAtRange.min) && (!createdAtRange.max || new Date(item.createdAt) <= createdAtRange.max);
-        return categoryMatch && subcategoryMatch && priceMatch && createdAtMatch;
+        const updatedAtMatch = (!updatedAtRange.min || new Date(item.updatedAt) >= updatedAtRange.min) && (!updatedAtRange.max || new Date(item.updatedAt) <= updatedAtRange.max);
+        return categoryMatch && subcategoryMatch && priceMatch && createdAtMatch && updatedAtMatch;
       });
     onFilterChange(filteredData);
   };
