@@ -33,10 +33,10 @@ const GroupingSettings = ({ open, onClose, onGroupingChange, onApplyGrouping }: 
                 <MenuItem value="category">Category</MenuItem>
                 <MenuItem value="subcategory">Subcategory</MenuItem>
             </Select>
-            <Button onClick={handleClearGr} variant="outlined" color="primary" fullWidth sx={{ height: '50px', marginTop: '10px' }}>
+            <Button onClick={handleClearGr} variant="outlined" fullWidth sx={{ height: '50px', marginTop: '10px' }}>
                 Clear Grouping
             </Button>
-            <Button onClick={onApplyGrouping} variant="contained" color="primary" fullWidth sx={{ height: '50px', marginTop: '10px' }}>
+            <Button onClick={onApplyGrouping} variant="contained" fullWidth sx={{ height: '50px', marginTop: '10px' }}>
                 Apply Grouping
             </Button>
         </Sidebar>

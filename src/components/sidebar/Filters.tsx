@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, TextField, Select, MenuItem, FormControl, InputLabel, Checkbox, Slider, Typography, Button, IconButton, ListItemText, SelectChangeEvent } from '@mui/material';
+import { Box, TextField, Select, MenuItem, FormControl, Checkbox, Slider, Typography, Button, IconButton, ListItemText, SelectChangeEvent } from '@mui/material';
 import Sidebar from './Sidebar';
 import ClearIcon from '@mui/icons-material/Clear';
 import FuzzySearch from 'fuzzy-search';

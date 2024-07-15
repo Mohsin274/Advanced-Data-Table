@@ -16,9 +16,27 @@ interface SortingProps {
 const Sorting = ({ open, onClose, columns, onColumnSortChange }: SortingProps) => {
   const [columnSorting, setColumnSorting] = useState<Record<string, string>>({});
 
+  const getSortIcon = (sortState: string) => {
+    if (sortState === 'asc') {
+      return <ArrowUpwardIcon fontSize="small" />;
+    } else if (sortState === 'desc') {
+      return <ArrowDownwardIcon fontSize="small" />;
+    } else {
+      return <ImportExportIcon fontSize="small" />;
+    }
+  };
+
   const handleSortChange = (columnId: string) => {
     const currentSort = columnSorting[columnId] || '';
-    const newSort = currentSort === 'asc' ? 'desc' : (currentSort === 'desc' ? '' : 'asc');
+    let newSort;
+    if (currentSort === 'asc') {
+      newSort = 'desc';
+    } else if (currentSort === 'desc') {
+      newSort = '';
+    } else {
+      newSort = 'asc';
+    }
+
     setColumnSorting((prevSorting) => ({
       ...prevSorting,
       [columnId]: newSort,
@@ -29,7 +47,7 @@ const Sorting = ({ open, onClose, columns, onColumnSortChange }: SortingProps) =
   const handleClearSorting = () => {
     setColumnSorting({});
     columns.forEach((column) => {
-      onColumnSortChange(column.id as string, '');
+      onColumnSortChange(column.id, '');
     });
   };
 
@@ -38,7 +56,7 @@ const Sorting = ({ open, onClose, columns, onColumnSortChange }: SortingProps) =
       <List>
         {columns.map((column) => (
           <ListItem
-            key={column.id as string}
+            key={column.id}
             sx={{
               border: '1px solid lightgray',
               borderRadius: '5px',
@@ -46,14 +64,8 @@ const Sorting = ({ open, onClose, columns, onColumnSortChange }: SortingProps) =
             }}
           >
             <ListItemText primary={column.columnDef.header} />
-            <IconButton size="small" onClick={() => handleSortChange(column.id as string)}>
-              {columnSorting[column.id as string] === 'asc' ? (
-                <ArrowUpwardIcon fontSize="small" />
-              ) : columnSorting[column.id as string] === 'desc' ? (
-                <ArrowDownwardIcon fontSize="small" />
-              ) : (
-                <ImportExportIcon fontSize="small" />
-              )}
+            <IconButton size="small" onClick={() => handleSortChange(column.id)}>
+              {getSortIcon(columnSorting[column.id])}
             </IconButton>
           </ListItem>
         ))}
@@ -62,7 +74,7 @@ const Sorting = ({ open, onClose, columns, onColumnSortChange }: SortingProps) =
         onClick={handleClearSorting}
         variant="outlined"
         fullWidth
-        sx={{ marginBottom: '15px', height: '50px' }}
+        sx={{ height: '50px' }}
       >
         Clear Sorting
       </Button>

@@ -51,10 +51,10 @@ const ColumnToggle = ({ columns, open, onClose, onColumnVisibilityChange }: Colu
         </ListItem>
       ))}
       </List>
-      <Button onClick={handleShowAll} variant="outlined" color="primary" fullWidth sx={{
+      <Button onClick={handleShowAll} variant="outlined" fullWidth sx={{
         marginBottom: '15px', height: '50px'
       }}>Show All Columns</Button>
-      <Button onClick={handleApply} variant="contained" color="primary" fullWidth sx={{
+      <Button onClick={handleApply} variant="contained" fullWidth sx={{
         height: '50px'
       }}>Apply</Button>
   </Sidebar>
@@ -62,4 +62,3 @@ const ColumnToggle = ({ columns, open, onClose, onColumnVisibilityChange }: Colu
 };
 
 export default ColumnToggle;
-

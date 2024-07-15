@@ -89,7 +89,7 @@ const Table = () => {
     []
   );
 
-  const table = useMaterialReactTable({
+  const table = useMaterialReactTable<Data>({
     columns,
     data: filteredData,
     muiPaginationProps: {
