@@ -26,7 +26,7 @@ type Data = {
   createdAt: string;
   updatedAt: string;
   price: number;
-  salePrice: number;
+  sale_price: number;
 };
 
 const data: Data[] = jsonData as Data[];
@@ -89,7 +89,7 @@ const Table = () => {
     []
   );
 
-  const table = useMaterialReactTable<Data>({
+  const table = useMaterialReactTable({
     columns,
     data: filteredData,
     muiPaginationProps: {
