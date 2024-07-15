@@ -9,7 +9,7 @@ import { MRT_Column } from 'material-react-table';
 interface SortingProps {
   open: boolean;
   onClose: () => void;
-  columns: MRT_Column<any>[];
+  columns: MRT_Column<any, unknown>[];
   onColumnSortChange: (columnId: string, sort: string) => void;
 }
 

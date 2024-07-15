@@ -4,7 +4,7 @@ import { MRT_Column } from 'material-react-table';
 import Sidebar from './Sidebar';
 
 interface ColumnToggleProps {
-  columns: MRT_Column<any>[];
+  columns: MRT_Column<any, unknown>[];
   open: boolean;
   onClose: () => void;
   onColumnVisibilityChange: (columnId: string, isHidden: boolean) => void;
@@ -41,15 +41,15 @@ const ColumnToggle = ({ columns, open, onClose, onColumnVisibilityChange }: Colu
   return (
     <Sidebar open={open} onClose={onClose} title='Show/Hide Columns'>
       <List>
-      {columns.map((column) => (
-        <ListItem key={column.id} sx={{ border: '1px solid lightgray', borderRadius: '5px', marginBottom: '10px' }}>
-          <ListItemText primary={column.columnDef.header} />
-        <Switch
-          checked={selectedColumns.includes(column.id)}
-          onChange={() => handleToggleChange(column.id)}
-        />
-        </ListItem>
-      ))}
+        {columns.map((column) => (
+          <ListItem key={column.id} sx={{ border: '1px solid lightgray', borderRadius: '5px', marginBottom: '10px' }}>
+            <ListItemText primary={column.columnDef.header} />
+            <Switch
+              checked={selectedColumns.includes(column.id)}
+              onChange={() => handleToggleChange(column.id)}
+            />
+          </ListItem>
+        ))}
       </List>
       <Button onClick={handleShowAll} variant="outlined" fullWidth sx={{
         marginBottom: '15px', height: '50px'
@@ -57,7 +57,7 @@ const ColumnToggle = ({ columns, open, onClose, onColumnVisibilityChange }: Colu
       <Button onClick={handleApply} variant="contained" fullWidth sx={{
         height: '50px'
       }}>Apply</Button>
-  </Sidebar>
+    </Sidebar>
   );
 };
 
